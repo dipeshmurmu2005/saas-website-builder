@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('status');
             $table->unsignedBigInteger('business_type_id');
             $table->unsignedBigInteger('theme_id');
+
+            $table->string('db_name');
+            $table->string('db_username');
+            $table->string('db_password');
+            $table->string('db_host')->default('127.0.0.1');
             $table->timestamps();
         });
     }

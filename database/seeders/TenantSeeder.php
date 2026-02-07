@@ -6,6 +6,7 @@ use App\Enums\TenantStatusEnum;
 use App\Models\Tenant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TenantSeeder extends Seeder
 {
@@ -20,6 +21,9 @@ class TenantSeeder extends Seeder
                 'domain' => 'onecafe.tenancy.test',
                 'status' => TenantStatusEnum::ACTIVE,
                 'business_type_id' => 1,
+                'db_name' => 'mytenant1',
+                'db_username' => 'root',
+                'db_password' => 'password',
                 'theme_id' => 1
             ],
             [
@@ -27,12 +31,16 @@ class TenantSeeder extends Seeder
                 'domain' => 'twocafe.tenancy.test',
                 'status' => TenantStatusEnum::ACTIVE,
                 'business_type_id' => 1,
+                'db_name' => 'mytenant2',
+                'db_username' => 'root',
+                'db_password' => 'password',
                 'theme_id' => 2
             ]
         ];
 
         foreach ($tenants as $tenant) {
-            Tenant::create($tenant);
+            $tenant = Tenant::create($tenant);
+            DB::statement("CREATE DATABASE IF NOT EXISTS mytenant_{$tenant->id}");
         }
     }
 }
