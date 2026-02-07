@@ -26,6 +26,7 @@ class LandlordPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('landlord')
+            ->domain('tenancy.test')
             ->path('landlord')
             ->login()
             ->colors([

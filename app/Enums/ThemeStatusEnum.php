@@ -2,7 +2,10 @@
 
 namespace App\Enums;
 
-enum ThemeStatusEnum: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum ThemeStatusEnum: string implements HasLabel, HasColor
 {
     case ACTIVE = 'active';
     case INACTIVE = 'inactive';
@@ -18,8 +21,8 @@ enum ThemeStatusEnum: string
     public function getColor(): string
     {
         return match ($this) {
-            self::ACTIVE => 'active',
-            self::INACTIVE => 'inactive',
+            self::ACTIVE => 'success',
+            self::INACTIVE => 'danger',
         };
     }
 }
