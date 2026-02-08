@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    Modern Ins
     {{ $slot }}
 
     @livewireScripts

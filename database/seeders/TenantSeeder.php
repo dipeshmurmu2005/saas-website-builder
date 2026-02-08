@@ -35,6 +35,26 @@ class TenantSeeder extends Seeder
                 'db_username' => 'root',
                 'db_password' => 'password',
                 'theme_id' => 2
+            ],
+            [
+                'name' => 'One Institute',
+                'domain' => 'oneins.tenancy.test',
+                'status' => TenantStatusEnum::ACTIVE,
+                'business_type_id' => 2,
+                'db_name' => 'mytenant_3',
+                'db_username' => 'root',
+                'db_password' => 'password',
+                'theme_id' => 3
+            ],
+            [
+                'name' => 'Two Institute',
+                'domain' => 'twoins.tenancy.test',
+                'status' => TenantStatusEnum::ACTIVE,
+                'business_type_id' => 2,
+                'db_name' => 'mytenant_3',
+                'db_username' => 'root',
+                'db_password' => 'password',
+                'theme_id' => 4
             ]
         ];
 

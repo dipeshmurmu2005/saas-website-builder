@@ -16,4 +16,9 @@ class Tenant extends Model
     {
         return $this->belongsTo(BusinessType::class);
     }
+
+    public function theme()
+    {
+        return $this->belongsTo(Theme::class, 'business_type_id');
+    }
 }

@@ -8,7 +8,6 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-jakarta: 'Plus Jakarta Sans';
 }
 
 @plugin "daisyui";
@@ -22,8 +21,8 @@
     color-scheme: light;
     /* color of browser-provided UI */
 
-    --color-base-100: white;
-    --color-base-200: white;
+    --color-base-100: oklch(98% 0.02 240);
+    --color-base-200: oklch(95% 0.03 240);
     --color-base-300: oklch(92% 0.04 240);
     --color-base-content: oklch(20% 0.05 240);
     --color-primary: oklch(55% 0.3 240);
@@ -45,7 +44,7 @@
 
     /* border radius */
     --radius-selector: 1rem;
-    --radius-field: 0.75rem;
+    --radius-field: 0.25rem;
     --radius-box: 0.5rem;
 
     /* base sizes */
@@ -56,6 +55,6 @@
     --border: 1px;
 
     /* effects */
-    --depth: 0;
+    --depth: 1;
     --noise: 0;
 }

@@ -16,6 +16,9 @@ class BusinessTypeSeeder extends Seeder
         $business_types = [
             [
                 'name' => 'Cafe'
+            ],
+            [
+                'name' => 'Institute'
             ]
         ];
         foreach ($business_types as $business_type) {

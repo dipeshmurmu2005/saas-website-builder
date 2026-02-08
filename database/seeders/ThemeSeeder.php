@@ -24,6 +24,16 @@ class ThemeSeeder extends Seeder
                 'business_type_id' => 1,
                 'name' => 'Classic',
                 'status' => ThemeStatusEnum::ACTIVE
+            ],
+            [
+                'business_type_id' => 2,
+                'name' => 'Classic',
+                'status' => ThemeStatusEnum::ACTIVE
+            ],
+            [
+                'business_type_id' => 2,
+                'name' => 'Modern',
+                'status' => ThemeStatusEnum::ACTIVE
             ]
         ];
         foreach ($themes as $theme) {
