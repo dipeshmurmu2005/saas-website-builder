@@ -87,5 +87,8 @@
             </div>
         </div>
     </div>
+    <div class="px-100 pt-48">
+        <video class="rounded-4xl overflow-hidden" src="{{ asset('videos/video.mp4') }}" loop autoplay muted></video>
+    </div>
     <livewire:products-section />
 </div>

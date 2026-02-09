@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="mt-20 flex justify-center">
-            <div class="w-100 rounded-xl bg-linear-to-tl from-primary/3 shadow-xs p-10 space-y-5 border border-black/3">
+            <div class="w-100 bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-10 rounded-2xl shadow-xs space-y-5">
                 <div class="h-14 w-14 bg-primary rounded-2xl flex justify-center items-center text-white">
                     <x-heroicon-m-academic-cap class="h-8 w-8" />
                 </div>

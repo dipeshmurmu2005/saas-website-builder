@@ -21,7 +21,7 @@
 <body class="font-jakarta">
     <livewire:nav-wire />
     {{ $slot }}
-
+    <livewire:footer-wire />
     @livewireScripts
 </body>
 
