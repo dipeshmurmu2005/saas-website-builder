@@ -13,30 +13,30 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->routes(function () {
+
             $host = request()->getHost();
 
-            $tenant = Tenant::where('domain', $host)
+            $tenant = Tenant::query()
+                ->where('domain', $host)
                 ->where('status', TenantStatusEnum::ACTIVE)
                 ->first();
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-
             if ($tenant) {
+
                 app()->instance('tenant', $tenant);
 
                 $routesFile = RouteResolver::routesPath();
 
-                if (file_exists($routesFile)) {
+                if (is_file($routesFile)) {
                     Route::middleware(['web'])
                         ->group($routesFile);
                 }
+
+                return;
             }
 
-            // // Standard API routes
-            // Route::middleware('api')
-            //     ->prefix('api')
-            //     ->group(base_path('routes/api.php'));
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
         });
     }
 }
