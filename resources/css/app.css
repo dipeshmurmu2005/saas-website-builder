@@ -59,3 +59,14 @@
     --depth: 0;
     --noise: 0;
 }
+
+input,
+select,
+textarea,
+label {
+    @apply outline-none focus:border-primary 2xl:text-xs;
+}
+
+[x-cloak] {
+    display: none !important;
+}

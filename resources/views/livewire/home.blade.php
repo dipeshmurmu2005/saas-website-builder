@@ -2,7 +2,7 @@
     <div class="px-150 pt-32">
         <x-home.hero />
     </div>
-    <div class="mt-32" x-data="{
+    <div class="mt-32" x-cloak x-data="{
         init() {
             const swiper = new Swiper('.customers', {
                 slidesPerView: 8,

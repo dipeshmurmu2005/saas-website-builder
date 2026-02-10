@@ -202,8 +202,11 @@
                     </div>
                 </div>
                 <div class="mt-10">
-                    <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
-                            class="h-5 w-5" /></button>
+                    <a
+                        href="{{ route('platform.onboarding', ['business_type' => $this->business->id, 'plan' => 1]) }}">
+                        <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
+                                class="h-5 w-5" /></button>
+                    </a>
                 </div>
             </div>
             <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-8 rounded-2xl shadow-xs">

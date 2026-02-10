@@ -18,7 +18,7 @@
     @livewireStyles
 </head>
 
-<body class="font-jakarta">
+<body class="font-jakarta" x-data x-cloak>
     <livewire:nav-wire />
     {{ $slot }}
     <livewire:footer-wire />

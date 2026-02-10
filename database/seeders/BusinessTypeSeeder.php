@@ -15,10 +15,12 @@ class BusinessTypeSeeder extends Seeder
     {
         $business_types = [
             [
-                'name' => 'Cafe'
+                'name' => 'Cafe',
+                'slug' => 'cafe',
             ],
             [
-                'name' => 'Institute'
+                'name' => 'Institute',
+                'slug' => 'institute'
             ]
         ];
         foreach ($business_types as $business_type) {
