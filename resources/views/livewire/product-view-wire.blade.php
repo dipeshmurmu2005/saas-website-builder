@@ -202,8 +202,7 @@
                     </div>
                 </div>
                 <div class="mt-10">
-                    <a
-                        href="{{ route('platform.onboarding', ['business_type' => $this->business->id, 'plan' => 1]) }}">
+                    <a href="{{ route('platform.onboarding', ['business' => $this->business->slug, 'plan' => 1]) }}">
                         <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
                                 class="h-5 w-5" /></button>
                     </a>

@@ -28,8 +28,8 @@
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend">Business Type</legend>
-                        <select class="select w-full" wire:model="business_type">
-                            @foreach ($this->business_types as $key => $business)
+                        <select class="select w-full" wire:model="business">
+                            @foreach ($this->businesses as $key => $business)
                                 <option value="{{ $key }}" wire:key="{{ $key }}">{{ $business }}
                                 </option>
                             @endforeach

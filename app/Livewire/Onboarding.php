@@ -8,17 +8,24 @@ use Livewire\Component;
 
 class Onboarding extends Component
 {
-    public $business_types;
+    public $businesses;
 
-    public $business_type;
+    public $business;
 
     public $plan;
 
     public function mount(Request $request)
     {
+        $validated = $request->validate([
+            'business' => 'required|string',
+            'plan' => 'required|string',
+        ]);
+        $this->business = Business::where('slug', $validated['business'])->first();
+        $this->businesses = Business::latest()->pluck('name', 'slug');
         $this->plan = $request->get('plan');
-        $this->business_type = $request->get('business_type');
-        $this->business_types = Business::latest()->pluck('name', 'id');
+        if (!($this->business && $this->plan)) {
+            abort(404);
+        }
     }
     public function render()
     {
