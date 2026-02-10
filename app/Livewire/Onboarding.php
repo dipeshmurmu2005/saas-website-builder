@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Business;
 use Illuminate\Http\Request;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class Onboarding extends Component
@@ -13,6 +14,15 @@ class Onboarding extends Component
     public $business;
 
     public $plan;
+
+    public $city;
+
+    public $phone;
+
+    public $email;
+
+    #[Locked]
+    public $active_step = 1;
 
     public function mount(Request $request)
     {
@@ -30,5 +40,12 @@ class Onboarding extends Component
     public function render()
     {
         return view('livewire.onboarding');
+    }
+
+    public function switchStep() {}
+
+    public function onboard()
+    {
+        dd('hello');
     }
 }
