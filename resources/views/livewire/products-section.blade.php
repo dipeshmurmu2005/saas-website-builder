@@ -7,7 +7,7 @@
                         class="font-black text-primary">multiple</span> business products</h4>
             </div>
         </div>
-        <div class="mt-20 flex justify-center">
+        <div class="mt-20 flex justify-center gap-8">
             @foreach ($this->business_types as $type)
                 <div class="w-100 bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-10 rounded-2xl shadow-xs space-y-5">
                     <div class="h-14 w-14 bg-primary rounded-2xl flex justify-center items-center text-white">

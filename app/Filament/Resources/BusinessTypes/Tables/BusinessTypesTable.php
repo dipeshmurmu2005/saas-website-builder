@@ -15,7 +15,17 @@ class BusinessTypesTable
         return $table
             ->columns([
                 TextColumn::make('name'),
-                TextColumn::make('slug')
+                TextColumn::make('slug'),
+                TextColumn::make('max_limit'),
+                TextColumn::make('total_tenants')
+                    ->color(function ($state, $record) {
+                        if (($state / $record->max_limit) * 100 > 80) {
+                            return 'danger';
+                        } else {
+                            return 'success';
+                        }
+                    })
+                    ->badge(),
             ])
             ->filters([
                 //
