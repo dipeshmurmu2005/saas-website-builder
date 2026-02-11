@@ -1,13 +1,17 @@
 <div class="py-10 px-60">
     <div class="bg-linear-to-br from-[#000000]/4 to-[#BF40BF]/4 p-18 rounded-2xl">
-        <div class="pt-5 flex justify-center flex-col items-center gap-2">
-            <h2 class="text-4xl font-black"><span class="text-primary">Step 1</span> / 3</h2>
-            <h2 class="text-2xl font-medium">Tell us About your Business</h2>
-        </div>
-        {{-- <div class="pt-5 flex justify-center flex-col items-center gap-2">
-            <h2 class="text-4xl font-black"><span class="text-primary">Step 2</span> / 3</h2>
-            <h2 class="text-2xl font-medium">Choose a theme</h2>
-        </div> --}}
+        @if ($this->activeStep == 1)
+            <div class="pt-5 flex justify-center flex-col items-center gap-2">
+                <h2 class="text-4xl font-black"><span class="text-primary">Step 1</span> / 3</h2>
+                <h2 class="text-2xl font-medium">Tell us About your Business</h2>
+            </div>
+        @endif
+        @if ($this->activeStep == 2)
+            <div class="pt-5 flex justify-center flex-col items-center gap-2">
+                <h2 class="text-4xl font-black"><span class="text-primary">Step 2</span> / 3</h2>
+                <h2 class="text-2xl font-medium">Choose a theme</h2>
+            </div>
+        @endif
         {{-- <div class="flex justify-center">
             <div class="pt-5 flex justify-center flex-col items-center gap-2 w-120">
                 <h2 class="text-4xl font-black mb-8"><span class="text-primary">Step 3</span> / 3</h2>
@@ -19,158 +23,187 @@
             </div>
         </div> --}}
         <div class="mt-10">
-            <div class="flex justify-center flex-col items-center gap-5">
-                <div class="bg-white p-10 rounded-2xl w-120">
-                    <fieldset class="fieldset">
-                        <legend class="fieldset-legend">Business Name</legend>
-                        <input type="text" class="input w-full" placeholder="e.g. Acme Corp" />
-                        <p class="label">This will be your primary site title</p>
-                    </fieldset>
-                    <fieldset class="fieldset">
-                        <legend class="fieldset-legend">Business Type</legend>
-                        <select class="select w-full" wire:model="business">
-                            @foreach ($this->businesses as $key => $business)
-                                <option value="{{ $key }}" wire:key="{{ $key }}">{{ $business }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <p class="label">Pre-selected based on your initial choice.</p>
-                    </fieldset>
-                    <div class="grid grid-cols-2 gap-5">
+            @if ($this->activeStep == 1)
+
+                <div class="flex justify-center flex-col items-center gap-5">
+                    <div class="bg-white p-10 rounded-2xl w-120">
                         <fieldset class="fieldset">
-                            <legend class="fieldset-legend">City/Location</legend>
-                            <label class="input">
-                                <x-heroicon-m-map-pin class="h-5 w-5" />
-                                <input type="text" required placeholder="e.g. Birtamode/Jhapa" minlength="8" />
-                            </label>
+                            <legend class="fieldset-legend">Business Name</legend>
+                            <input type="text"
+                                class="input w-full {{ $errors->has('business_name') ? 'border-error' : '' }}"
+                                wire:model="business_name" placeholder="e.g. Acme Corp" />
+                            <p class="label">This will be your primary site title</p>
+                            @error('business_name')
+                                <p class="label text-error">{{ $message }}</p>
+                            @enderror
                         </fieldset>
                         <fieldset class="fieldset">
-                            <legend class="fieldset-legend">Phone Number</legend>
-                            <label class="input">
-                                <x-heroicon-m-phone class="h-5 w-5" />
-                                <input type="text" required placeholder="+977 984832480" minlength="8" />
-                            </label>
+                            <legend class="fieldset-legend">Business Type</legend>
+                            <select class="select w-full {{ $errors->has('business') ? 'border-error' : '' }}"
+                                wire:model="business">
+                                @foreach ($this->businesses as $key => $business)
+                                    <option value="{{ $key }}" wire:key="{{ $key }}">
+                                        {{ $business }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <p class="label">Pre-selected based on your initial choice.</p>
+                            @error('business')
+                                <p class="label text-error">{{ $message }}</p>
+                            @enderror
                         </fieldset>
+                        <div class="grid grid-cols-2 gap-5">
+                            <fieldset class="fieldset">
+                                <legend class="fieldset-legend">City/Location</legend>
+                                <label class="input {{ $errors->has('location') ? 'border-error' : '' }}">
+                                    <x-heroicon-m-map-pin class="h-5 w-5" />
+                                    <input type="text" required placeholder="e.g. Birtamode/Jhapa"
+                                        wire:model="location" minlength="8" />
+                                </label>
+                                @error('location')
+                                    <p class="label text-error">{{ $message }}</p>
+                                @enderror
+                            </fieldset>
+                            <fieldset class="fieldset">
+                                <legend class="fieldset-legend">Phone Number</legend>
+                                <label class="input {{ $errors->has('phone') ? 'border-error' : '' }}">
+                                    <x-heroicon-m-phone class="h-5 w-5" />
+                                    <input type="text" wire:model="phone" required placeholder="+977 984832480"
+                                        minlength="8" />
+                                </label>
+                                @error('phone')
+                                    <p class="label text-error">{{ $message }}</p>
+                                @enderror
+                            </fieldset>
+                        </div>
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Business Contact Email</legend>
+                            <label class="input w-full {{ $errors->has('email') ? 'border-error' : '' }}">
+                                <x-heroicon-m-envelope class="h-5 w-5" />
+                                <input type="text" required wire:model="email" placeholder="hello@business.com"
+                                    minlength="8" />
+                            </label>
+                            <p class="label">Where customers can reach you directly</p>
+                            @error('email')
+                                <p class="label text-error">{{ $message }}</p>
+                            @enderror
+                        </fieldset>
+                        <div class="flex justify-between">
+                            <div></div>
+                            <button class="btn btn-primary" wire:click="switchToTheme()">Continue</button>
+                        </div>
                     </div>
-                    <fieldset class="fieldset">
-                        <legend class="fieldset-legend">Business Contact Email</legend>
-                        <label class="input w-full">
-                            <x-heroicon-m-envelope class="h-5 w-5" />
-                            <input type="text" required placeholder="hello@business.com" minlength="8" />
-                        </label>
-                        <p class="label">Where customers can reach you directly</p>
-                    </fieldset>
-                    <div class="flex justify-between">
-                        <div></div>
-                        <button class="btn btn-primary">Continue</button>
+                    <div class="flex gap-1 items-center text-black/50 text-sm"><x-heroicon-m-lock-closed
+                            class="h-4 w-4" />
+                        Your
+                        data is
+                        secured with enterprise grade encryption
                     </div>
                 </div>
-                <div class="flex gap-1 items-center text-black/50 text-sm"><x-heroicon-m-lock-closed class="h-4 w-4" />
-                    Your
-                    data is
-                    secured with enterprise grade encryption
-                </div>
-            </div>
-            {{-- <div>
-                <div class="grid grid-cols-4 gap-5">
-                    <div>
-                        <div class="bg-white p-1 rounded-2xl">
-                            <div class="rounded-xl overflow-hidden relative h-50">
-                                <img src="https://cdn.dribbble.com/userupload/6509947/file/original-46e2a3328428f742ebc8d74e3cc3e7e4.png?resize=400x0"
-                                    alt="" class="h-full w-full object-cover">
-                                <div
-                                    class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
+            @endif
+            @if ($this->activeStep == 2)
+                <div>
+                    <div class="grid grid-cols-4 gap-5">
+                        <div>
+                            <div class="bg-white p-1 rounded-2xl">
+                                <div class="rounded-xl overflow-hidden relative h-50">
+                                    <img src="https://cdn.dribbble.com/userupload/6509947/file/original-46e2a3328428f742ebc8d74e3cc3e7e4.png?resize=400x0"
+                                        alt="" class="h-full w-full object-cover">
+                                    <div
+                                        class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="p-5 space-y-2">
-                                <h2 class="font-bold">Classic</h2>
-                                <p class="text-sm text-black/80">In both processes, you can use a website themes or
-                                    templates in order to make the
-                                    process
-                                    faster, easier and better. </p>
-                                <div class="grid grid-cols-2 gap-5">
-                                    <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
-                                        Preview</button>
-                                    <button class="btn btn-primary">Select</button>
+                                <div class="p-5 space-y-2">
+                                    <h2 class="font-bold">Classic</h2>
+                                    <p class="text-sm text-black/80">In both processes, you can use a website themes or
+                                        templates in order to make the
+                                        process
+                                        faster, easier and better. </p>
+                                    <div class="grid grid-cols-2 gap-5">
+                                        <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
+                                            Preview</button>
+                                        <button class="btn btn-primary">Select</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="bg-white p-1 rounded-2xl">
-                            <div class="rounded-xl overflow-hidden relative h-50">
-                                <img src="https://img.freepik.com/free-psd/flat-design-home-template_23-2150567210.jpg?semt=ais_hybrid&w=740&q=80"
-                                    alt="" class="h-full w-full object-cover">
-                                <div
-                                    class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
+                        <div>
+                            <div class="bg-white p-1 rounded-2xl">
+                                <div class="rounded-xl overflow-hidden relative h-50">
+                                    <img src="https://img.freepik.com/free-psd/flat-design-home-template_23-2150567210.jpg?semt=ais_hybrid&w=740&q=80"
+                                        alt="" class="h-full w-full object-cover">
+                                    <div
+                                        class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="p-5 space-y-2">
-                                <h2 class="font-bold">Modern</h2>
-                                <p class="text-sm text-black/80">In both processes, you can use a website themes or
-                                    templates in order to make the
-                                    process
-                                    faster, easier and better. </p>
-                                <div class="grid grid-cols-2 gap-5">
-                                    <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
-                                        Preview</button>
-                                    <button class="btn btn-primary">Select</button>
+                                <div class="p-5 space-y-2">
+                                    <h2 class="font-bold">Modern</h2>
+                                    <p class="text-sm text-black/80">In both processes, you can use a website themes or
+                                        templates in order to make the
+                                        process
+                                        faster, easier and better. </p>
+                                    <div class="grid grid-cols-2 gap-5">
+                                        <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
+                                            Preview</button>
+                                        <button class="btn btn-primary">Select</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="bg-white p-1 rounded-2xl">
-                            <div class="rounded-xl overflow-hidden relative h-50">
-                                <img src="https://minimal.gallery/wp-content/uploads/2025/12/danilosierra.com_-900x500.png"
-                                    alt="" class="h-full w-full object-cover">
-                                <div
-                                    class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
+                        <div>
+                            <div class="bg-white p-1 rounded-2xl">
+                                <div class="rounded-xl overflow-hidden relative h-50">
+                                    <img src="https://minimal.gallery/wp-content/uploads/2025/12/danilosierra.com_-900x500.png"
+                                        alt="" class="h-full w-full object-cover">
+                                    <div
+                                        class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="p-5 space-y-2">
-                                <h2 class="font-bold">Premium</h2>
-                                <p class="text-sm text-black/80">In both processes, you can use a website themes or
-                                    templates in order to make the
-                                    process
-                                    faster, easier and better. </p>
-                                <div class="grid grid-cols-2 gap-5">
-                                    <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
-                                        Preview</button>
-                                    <button class="btn btn-primary">Select</button>
+                                <div class="p-5 space-y-2">
+                                    <h2 class="font-bold">Premium</h2>
+                                    <p class="text-sm text-black/80">In both processes, you can use a website themes or
+                                        templates in order to make the
+                                        process
+                                        faster, easier and better. </p>
+                                    <div class="grid grid-cols-2 gap-5">
+                                        <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
+                                            Preview</button>
+                                        <button class="btn btn-primary">Select</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="bg-white p-1 rounded-2xl">
-                            <div class="rounded-xl overflow-hidden relative h-50">
-                                <img src="https://bunny-wp-pullzone-xsbzasiyjy.b-cdn.net/wp-content/uploads/2025/03/lemmony1.webp"
-                                    alt="" class="h-full w-full object-cover">
-                                <div
-                                    class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
+                        <div>
+                            <div class="bg-white p-1 rounded-2xl">
+                                <div class="rounded-xl overflow-hidden relative h-50">
+                                    <img src="https://bunny-wp-pullzone-xsbzasiyjy.b-cdn.net/wp-content/uploads/2025/03/lemmony1.webp"
+                                        alt="" class="h-full w-full object-cover">
+                                    <div
+                                        class="absolute left-0 top-0 h-full w-full bg-linear-to-t from-white/40 to-transparent">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="p-5 space-y-2">
-                                <h2 class="font-bold">Casual</h2>
-                                <p class="text-sm text-black/80">In both processes, you can use a website themes or
-                                    templates in order to make the
-                                    process
-                                    faster, easier and better. </p>
-                                <div class="grid grid-cols-2 gap-5">
-                                    <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
-                                        Preview</button>
-                                    <button class="btn btn-primary">Select</button>
+                                <div class="p-5 space-y-2">
+                                    <h2 class="font-bold">Casual</h2>
+                                    <p class="text-sm text-black/80">In both processes, you can use a website themes or
+                                        templates in order to make the
+                                        process
+                                        faster, easier and better. </p>
+                                    <div class="grid grid-cols-2 gap-5">
+                                        <button class="btn bg-black/5"><x-heroicon-m-play-circle class="h-4 w-4" />
+                                            Preview</button>
+                                        <button class="btn btn-primary">Select</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            @endif
+
             {{-- <div class="flex justify-center flex-col items-center gap-10">
                 <div class="w-180 grid grid-cols-2 gap-10">
                     <div class="bg-white p-5 ring-2 rounded-2xl ring-primary ring-offset-5 shadow-xs space-y-5">

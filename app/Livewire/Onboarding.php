@@ -15,14 +15,26 @@ class Onboarding extends Component
 
     public $plan;
 
-    public $city;
+    #[Locked]
+    public $activeStep = 1;
+
+    // firststep
+    public $business_name;
+
+    public $location;
 
     public $phone;
 
     public $email;
 
-    #[Locked]
-    public $active_step = 1;
+
+    protected $firstStepRules = [
+        'business_name' => 'required|string',
+        'business' => 'required|string|exists:businesses,slug',
+        'location' => 'required|string',
+        'phone' => 'required|string',
+        'email' => 'required|email',
+    ];
 
     public function mount(Request $request)
     {
@@ -30,10 +42,11 @@ class Onboarding extends Component
             'business' => 'required|string',
             'plan' => 'required|string',
         ]);
-        $this->business = Business::where('slug', $validated['business'])->first();
+        $business = Business::where('slug', $validated['business'])->first();
+        $this->business = $validated['business'];
         $this->businesses = Business::latest()->pluck('name', 'slug');
         $this->plan = $request->get('plan');
-        if (!($this->business && $this->plan)) {
+        if (!($business && $this->plan)) {
             abort(404);
         }
     }
@@ -42,7 +55,11 @@ class Onboarding extends Component
         return view('livewire.onboarding');
     }
 
-    public function switchStep() {}
+    public function switchToTheme()
+    {
+        $this->validate($this->firstStepRules);
+        $this->activeStep = 2;
+    }
 
     public function onboard()
     {
