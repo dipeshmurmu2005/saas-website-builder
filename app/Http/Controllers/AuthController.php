@@ -22,7 +22,7 @@ class AuthController extends Controller
         $platformUser = User::where('email', $email)->first();
         if ($platformUser) {
             Auth::login($platformUser);
-            return redirect()->route('platform.home');
+            return redirect()->intended(route('platform.home'));
         } else {
             dd('create new');
         }

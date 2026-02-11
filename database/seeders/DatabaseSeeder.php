@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessSeeder::class);
         $this->call(ThemeSeeder::class);
         $this->call(TenantSeeder::class);
+        $this->call(PlanSeeder::class);
     }
 }

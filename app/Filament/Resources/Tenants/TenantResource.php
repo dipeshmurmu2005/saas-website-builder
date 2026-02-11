@@ -18,7 +18,7 @@ class TenantResource extends Resource
 {
     protected static ?string $model = Tenant::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
 
     public static function form(Schema $schema): Schema
     {

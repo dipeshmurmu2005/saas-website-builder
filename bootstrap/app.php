@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\Tenant;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -13,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->prepend(Tenant::class);
+        $middleware->alias([
+            'platformauth' => AuthMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
