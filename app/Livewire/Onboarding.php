@@ -16,8 +16,6 @@ class Onboarding extends Component
 
     public $business;
 
-    public $plan;
-
     public $themes;
 
     #[Locked]
@@ -35,9 +33,12 @@ class Onboarding extends Component
     public $theme;
 
     // third step
-    public $sub_domain;
+    public $subdomain;
 
     public $custom_domain;
+
+    // fourth step
+    public $plan;
 
     protected $firstStepRules = [
         'business_name' => 'required|string',
@@ -51,9 +52,9 @@ class Onboarding extends Component
         'theme' => 'required|string|exists:themes,slug'
     ];
 
-    protected $thirdSteps = [
-        'subdomain'     => 'nullable|required_without:custom_domain|prohibited_with:custom_domain',
-        'custom_domain' => 'nullable|required_without:subdomain|prohibited_with:subdomain',
+    protected $thirdStepRules = [
+        'subdomain'     => 'nullable|required_without:custom_domain|unique:tenants,domain',
+        'custom_domain' => 'nullable|required_without:subdomain',
     ];
 
     public function mount(Request $request)
@@ -104,6 +105,12 @@ class Onboarding extends Component
         if ($theme) {
             $this->activeStep = 3;
         }
+    }
+
+    public function switchToCheckout()
+    {
+        $this->validate($this->thirdStepRules);
+        $this->activeStep = 4;
     }
 
     public function onboard()

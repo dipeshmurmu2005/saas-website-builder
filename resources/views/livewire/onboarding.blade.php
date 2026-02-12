@@ -177,10 +177,14 @@
                                         <input type="url" placeholder="my-business" wire:model="subdomain" />
                                         <div class="border-l pl-2 font-bold border-black/10">.ongridlayers.com</div>
                                     </label>
+                                    @error('subdomain')
+                                        <p class="label text-error">{{ $message }}</p>
+                                    @enderror
                                 </fieldset>
                             </div>
                         </div>
-                        <div class="bg-white p-5 rounded-2xl ring-offset-5 shadow-xs space-y-5">
+                        <div
+                            class="bg-white p-5 rounded-2xl ring-offset-5 shadow-xs space-y-5 pointer-events-none select-none opacity-80">
                             <div class="w-full relative flex justify-between">
                                 <div
                                     class="h-12 w-12 rounded-xl bg-primary/4 text-primary flex justify-center items-center">
@@ -226,7 +230,7 @@
                     </div>
                     <div class="flex justify-between items-center w-180">
                         <button>Back</button>
-                        <button class="btn btn-primary">Continue</button>
+                        <button class="btn btn-primary" wire:click="switchToCheckout()">Continue</button>
                     </div>
                 </div>
             @endif
