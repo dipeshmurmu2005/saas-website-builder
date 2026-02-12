@@ -2,14 +2,14 @@
     <div class="bg-linear-to-br from-[#000000]/4 to-[#BF40BF]/4 p-18 rounded-2xl">
         @if ($this->activeStep == 1)
             <div class="pt-5 flex justify-center flex-col items-center gap-2">
-                <h2 class="text-4xl font-black"><span class="text-primary">Step 1</span> / 3</h2>
+                <h2 class="text-4xl font-black"><span class="text-primary">Step 1</span> / 4</h2>
                 <h2 class="text-2xl font-medium">Tell us About your Business</h2>
             </div>
         @endif
 
         @if ($this->activeStep == 2)
             <div class="pt-5 flex justify-center flex-col items-center gap-2">
-                <h2 class="text-4xl font-black"><span class="text-primary">Step 2</span> / 3</h2>
+                <h2 class="text-4xl font-black"><span class="text-primary">Step 2</span> / 4</h2>
                 <h2 class="text-2xl font-medium">Choose a theme</h2>
             </div>
         @endif
@@ -17,8 +17,22 @@
         @if ($this->activeStep == 3)
             <div class="flex justify-center">
                 <div class="pt-5 flex justify-center flex-col items-center gap-2 w-120">
-                    <h2 class="text-4xl font-black mb-8"><span class="text-primary">Step 3</span> / 3</h2>
+                    <h2 class="text-4xl font-black mb-8"><span class="text-primary">Step 3</span> / 4</h2>
                     <h2 class="text-3xl font-medium">Choose your website address</h2>
+                    <p class="text-center text-black/60">This is how people will find your business online. You can
+                        always
+                        update these settings later from
+                        your
+                        dashboard</p>
+                </div>
+            </div>
+        @endif
+
+        @if ($this->activeStep == 4)
+            <div class="flex justify-center">
+                <div class="pt-5 flex justify-center flex-col items-center gap-2 w-120">
+                    <h2 class="text-4xl font-black mb-8"><span class="text-primary">Step 3</span> / 4</h2>
+                    <h2 class="text-3xl font-medium">Review & Chekout</h2>
                     <p class="text-center text-black/60">This is how people will find your business online. You can
                         always
                         update these settings later from
