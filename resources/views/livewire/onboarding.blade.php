@@ -260,6 +260,50 @@
                     </div>
                 </div>
             @endif
+            @if ($this->activeStep == 4)
+                <div class="flex justify-center">
+                    <div class="space-y-5 w-140">
+                        <div class="bg-white grid grid-cols-3 rounded-xl">
+                            <div class="p-5 rounded-xl">
+                                <h2 class="font-bold text-sm text-black/50">Plan</h2>
+                                <h3 class="font-medium text-success">Basic</h3>
+                            </div>
+                            <div class="p-5 rounded-xl">
+                                <h2 class="font-bold text-sm text-black/50">Business</h2>
+                                <h3 class="font-medium text-primary">Institute</h3>
+                            </div>
+                            <div class="p-5 rounded-xl">
+                                <h2 class="font-bold text-sm text-black/50">Theme</h2>
+                                <h3 class="font-medium text-primary">Classic</h3>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-5 rounded-xl space-y-2">
+                                <div>Rs. <span class="text-4xl font-bold">499</span> /mo</div>
+                                <p class="text-sm text-black/60">This is how people will find your business online.</p>
+                            </div>
+                            <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-5 rounded-xl space-y-2">
+                                <div>Rs. <span class="text-4xl font-bold">1999</span> /year</div>
+                                <p class="text-sm text-black/60">This is how people will find your business online.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 shadow-xs rounded-xl space-y-2">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span class="font-black">Rs. 499</span>
+                            </div>
+                            <div class="flex justify-between font-black text-lg">
+                                <span>Total Amount</span>
+                                <span class="font-black text-primary">Rs. 499</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center gap-2">
+                            <button class="btn btn-primary h-12">Checkout</button>
+                            <button class="btn btn-primary h-12 btn-outline">Start Free Trial</button>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -64,6 +64,7 @@ class Onboarding extends Component
     {
         if (session('onboarding_data')) {
             $this->setSessionDatas();
+            $this->activeStep = 4;
         } else {
             $validated = $request->validate([
                 'business' => 'required|string',
