@@ -1,4 +1,4 @@
-<div class="pt-60 px-60">
+<div class="pt-60 px-60 pb-20">
     <div>
         <div class="flex justify-center items-center flex-col text-center gap-5">
             <h4 class="w-fit px-4 py-2 text-sm bg-primary/5 text-primary rounded-full">Products By Grid Layers</h4>
@@ -37,6 +37,10 @@
                         </div>
                     </div>
                     <div class="space-y-5 mt-8">
+                        <div class="text-sm"><span class="text-primary mt-5">Starting at</span> Rs. <span
+                                class="text-5xl font-black">499</span>
+                            <span>/mo</span>
+                        </div>
                         <div>
                             <a href="{{ route('platform.product', ['slug' => $type->slug]) }}">
                                 <button class="btn btn-primary h-14 w-full">Explore Product</button>

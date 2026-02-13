@@ -40,5 +40,10 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
+    'esewa' => [
+        'product_code' => env('ESEWA_PRODUCT_CODE'),
+        'secret_key' => env('ESEWA_SECRET_KEY'),
+        'base_url' => env('ESEWA_BASE_URL')
+    ]
 
 ];
