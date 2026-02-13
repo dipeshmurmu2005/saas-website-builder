@@ -209,6 +209,7 @@ class Onboarding extends Component
         $this->onboard();
         $onboardAction = new OnboardingAction();
         $onboardAction->OnboardNewTenant();
+        return redirect()->route('platform.home');
     }
 
     public function updatedSubdomain()

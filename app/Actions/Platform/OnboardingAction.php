@@ -25,6 +25,8 @@ class OnboardingAction
                 });
                 $this->createDatabase($this->tenant->db_name);
                 $this->migrateTenant();
+                session()->forget('onboarding_data');
+                $this->onboardData->delete();
             } catch (\Throwable $th) {
                 dd($th);
                 info($th);
