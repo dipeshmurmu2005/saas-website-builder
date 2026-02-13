@@ -16,18 +16,21 @@ class PlanSeeder extends Seeder
             [
                 'business_id' => 1,
                 'name' => 'Starter',
+                'slug' => 'cafe-starter',
                 'price_monthly' => 200,
                 'price_yearly' => 600,
             ],
             [
                 'business_id' => 1,
                 'name' => 'Growth',
+                'slug' => 'cafe-growth',
                 'price_monthly' => 200,
                 'price_yearly' => 600,
             ],
             [
                 'business_id' => 1,
                 'name' => 'Premium',
+                'slug' => 'cafe-premium',
                 'price_monthly' => 200,
                 'price_yearly' => 600,
             ]

@@ -76,14 +76,9 @@
                             </fieldset>
                             <fieldset class="fieldset">
                                 <legend class="fieldset-legend">Business Type</legend>
-                                <select class="select w-full {{ $errors->has('business') ? 'border-error' : '' }}"
-                                    wire:model="business">
-                                    @foreach ($this->businesses as $key => $business)
-                                        <option value="{{ $key }}" wire:key="{{ $key }}">
-                                            {{ $business }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <div class="input w-full">
+                                    {{ $this->selectedBusiness->name }}
+                                </div>
                                 <p class="label">Pre-selected based on your initial choice.</p>
                                 @error('business')
                                     <p class="label text-error">{{ $message }}</p>
@@ -339,7 +334,28 @@
                                 </div>
                             </div>
                             <div class="flex justify-center items-center gap-2">
-                                <button class="btn btn-primary h-12" wire:click="onboard()">Checkout</button>
+                                <div x-data="{
+                                    init() {
+                                            $wire.on('redirect-to-payment', () => {
+                                                this.submitPayment();
+                                            });
+                                        },
+                                        submitPayment() {
+                                            document.getElementById('payment').submit();
+                                        }
+                                }" class="mt-5 pt-5 border-t border-white/5">
+                                    @if ($this->payment_params)
+                                        <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form"
+                                            id="payment" method="POST" hidden>
+                                            @csrf
+                                            @foreach ($this->payment_params as $key => $params)
+                                                <input type="text" id="amount" name="{{ $key }}"
+                                                    value="{{ $params }}" required hidden>
+                                            @endforeach
+                                        </form>
+                                    @endif
+                                </div>
+                                <button class="btn btn-primary h-12" wire:click="checkout()">Checkout</button>
                                 <button class="btn bg-black/4 h-12" wire:click="startFreeTrial()">
                                     <span class="loading loading-xs" wire:loading
                                         wire:target="startFreeTrial()"></span>

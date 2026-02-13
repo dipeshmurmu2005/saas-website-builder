@@ -174,104 +174,43 @@
     <div class="px-40 pt-32">
         <h2 class="text-center font-black text-4xl">Pricing</h2>
         <div class="grid grid-cols-4 px-30 mt-20 gap-5">
-            <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-8 rounded-2xl shadow-xs">
-                <div>
-                    <h2 class="font-bold text-lg">Start</h2>
-                    <p class="text-black/70">For individual projects or prototypes </p>
-                </div>
-                <div class="mt-5 text-sm font-medium">
-                    <span>Rs</span>
-                    <span class="text-5xl font-black">499</span>
-                    <span>/mo</span>
-                </div>
-                <div class="mt-5 space-y-4 text-xs">
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 environments
+            @foreach ($this->business->plans as $plan)
+                <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-8 rounded-2xl shadow-xs">
+                    <div>
+                        <h2 class="font-bold text-lg">{{ $plan->name }}</h2>
+                        <p class="text-black/70">For individual projects or prototypes </p>
                     </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 developer licenses
+                    <div class="mt-5 text-sm font-medium">
+                        <span>Rs</span>
+                        <span class="text-5xl font-black">499</span>
+                        <span>/mo</span>
                     </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> In-line AI extension
+                    <div class="mt-5 space-y-4 text-xs">
+                        <div class="flex gap-2 items-center">
+                            <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 environments
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 developer licenses
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> In-line AI extension
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Simple DOCX import & export
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Community support
+                        </div>
                     </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Simple DOCX import & export
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Community support
-                    </div>
-                </div>
-                <div class="mt-10">
-                    <a href="{{ route('platform.onboarding', ['business' => $this->business->slug, 'plan' => 1]) }}">
-                        <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
-                                class="h-5 w-5" /></button>
-                    </a>
-                </div>
-            </div>
-            <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-8 rounded-2xl shadow-xs">
-                <div>
-                    <h2 class="font-bold text-lg">Team</h2>
-                    <p class="text-black/70">For individual projects or prototypes </p>
-                </div>
-                <div class="mt-5 text-sm font-medium">
-                    <span>Rs</span>
-                    <span class="text-5xl font-black">999</span>
-                    <span>/mo</span>
-                </div>
-                <div class="mt-5 space-y-4 text-xs">
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 environments
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 developer licenses
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> In-line AI extension
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Simple DOCX import & export
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Community support
+                    <div class="mt-10">
+                        <a
+                            href="{{ route('platform.onboarding', ['business' => $this->business->slug, 'plan' => $plan->slug]) }}">
+                            <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
+                                    class="h-5 w-5" /></button>
+                        </a>
                     </div>
                 </div>
-                <div class="mt-10">
-                    <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
-                            class="h-5 w-5" /></button>
-                </div>
-            </div>
-            <div class="bg-linear-to-br from-[#BF40BF]/4 to-primary/4 p-8 rounded-2xl shadow-xs">
-                <div>
-                    <h2 class="font-bold text-lg">Business</h2>
-                    <p class="text-black/70">For individual projects or prototypes </p>
-                </div>
-                <div class="mt-5 text-sm font-medium">
-                    <span>Rs</span>
-                    <span class="text-5xl font-black">1999</span>
-                    <span>/mo</span>
-                </div>
-                <div class="mt-5 space-y-4 text-xs">
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 environments
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> 2 developer licenses
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> In-line AI extension
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Simple DOCX import & export
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <div><x-heroicon-m-check class="h-4 w-4 text-primary" /></div> Community support
-                    </div>
-                </div>
-                <div class="mt-10">
-                    <button class="btn btn-primary">Start Free Trial <x-heroicon-m-arrow-right
-                            class="h-5 w-5" /></button>
-                </div>
-            </div>
+            @endforeach
             <div class="bg-linear-to-br from-[#BF40BF]/40 to-primary/40 p-8 rounded-2xl shadow-xs">
                 <div>
                     <h2 class="font-bold text-lg">Enterprise</h2>

@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    Wow
     {{ $slot }}
 
     @livewireScripts

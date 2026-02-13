@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Actions\Platform\PaymentAction;
 use App\Actions\Platform\OnboardingAction;
 use App\Enums\BillingCycleEnum;
 use App\Models\Business;
@@ -9,17 +10,17 @@ use App\Models\OnboardData;
 use App\Models\Tenant;
 use App\Models\Theme;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Onboarding extends Component
 {
     public $businesses;
 
+    #[Locked]
     public $selectedBusiness;
 
+    #[Locked]
     public $business;
 
     public $themes;
@@ -52,6 +53,9 @@ class Onboarding extends Component
 
     public $billingCycle;
 
+    #[Locked]
+    public $payment_params;
+
     protected $firstStepRules = [
         'business_name' => 'required|string',
         'business' => 'required|string|exists:businesses,slug',
@@ -76,6 +80,7 @@ class Onboarding extends Component
                 'plan' => 'required|string',
             ]);
             $business = Business::where('slug', $validated['business'])->first();
+            $this->selectedBusiness = $business;
             if ($business) {
                 $this->business = $validated['business'];
                 $this->plan = $validated['plan'];
@@ -188,6 +193,8 @@ class Onboarding extends Component
             'custom_domain' => 'nullable|required_without:subdomain',
         ]);
         $onboardingData = session('onboarding_data');
+        $plan = $this->selectedBusiness->plans()->where('slug', $onboardingData['step_one']['plan'])->first();
+        $amount = $this->billingCycle == BillingCycleEnum::Monthly ? $plan->price_monthly : $plan->price_monthly;
         $newOnboardData = OnboardData::updateOrCreate([
             'user_id' => auth()->user()->id,
         ], [
@@ -200,16 +207,31 @@ class Onboarding extends Component
             'theme_slug' => $onboardingData['step_two']['theme'],
             'plan_slug' => $onboardingData['step_one']['plan'],
             'billing_cycle'  => $this->billingCycle,
-            'domain' => $this->fullsubdomain
+            'domain' => $this->fullsubdomain,
+            'subtotal' => $amount,
+            'total_amount' => $amount,
+            'discount' => 0,
         ]);
+
+        return $newOnboardData;
     }
 
     public function startFreeTrial()
     {
-        $this->onboard();
+        $newOnboard = $this->onboard();
+        $newOnboard->is_trial = true;
+        $newOnboard->save();
         $onboardAction = new OnboardingAction();
         $onboardAction->OnboardNewTenant();
         return redirect()->route('platform.home');
+    }
+
+    public function checkout()
+    {
+        $this->onboard();
+        $paymentAction = new PaymentAction();
+        $this->payment_params = $paymentAction->initiatePayment();
+        $this->dispatch('redirect-to-payment');
     }
 
     public function updatedSubdomain()

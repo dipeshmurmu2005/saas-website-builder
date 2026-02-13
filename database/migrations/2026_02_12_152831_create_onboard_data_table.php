@@ -23,6 +23,10 @@ return new class extends Migration
             $table->string('theme_slug');
             $table->string('billing_cycle');
             $table->string('domain');
+            $table->decimal('subtotal', 12, 2);
+            $table->decimal('total_amount', 12, 2);
+            $table->decimal('discount', 12, 2);
+            $table->boolean('is_trial')->default(true);
             $table->timestamps();
         });
     }

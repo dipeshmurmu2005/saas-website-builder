@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('business_id');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->decimal('price_monthly', 12, 2);
             $table->decimal('price_yearly', 12, 2);
             $table->integer('trial_period')->nullable();

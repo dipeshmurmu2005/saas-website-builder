@@ -18,6 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('business_id');
             $table->unsignedBigInteger('plan_id');
             $table->string('billing_cycle');
+            $table->decimal('subtotal', 12, 2);
+            $table->decimal('paid_amount', 12, 2);
+            $table->decimal('discount_amount', 12, 2);
+            $table->decimal('total_amount', 12, 2);
             $table->string('status');
             $table->timestamp('renewed_at');
             $table->timestamp('expires_at');

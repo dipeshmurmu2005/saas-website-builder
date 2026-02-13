@@ -27,4 +27,9 @@ class Business extends Model
     {
         return $this->tenants->count();
     }
+
+    public function plans()
+    {
+        return $this->hasMany(Plan::class, 'business_id');
+    }
 }

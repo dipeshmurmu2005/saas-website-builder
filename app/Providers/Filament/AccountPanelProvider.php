@@ -27,6 +27,8 @@ class AccountPanelProvider extends PanelProvider
             ->id('account')
             ->path('account')
             ->login()
+            ->brandLogo(asset('images/gridlayer.png'))
+            ->brandLogoHeight('3rem')
             ->colors([
                 'primary' => [
                     50  => 'oklch(0.97 0.05 240)',
