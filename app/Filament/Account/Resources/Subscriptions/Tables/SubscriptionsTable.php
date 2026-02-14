@@ -16,6 +16,7 @@ class SubscriptionsTable
             ->columns([
                 TextColumn::make('tenant.name'),
                 TextColumn::make('business.name'),
+                TextColumn::make('tenant.domain'),
                 TextColumn::make('plan.name'),
                 TextColumn::make('total_amount'),
                 TextColumn::make('paid_amount'),

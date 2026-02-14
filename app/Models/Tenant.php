@@ -28,4 +28,9 @@ class Tenant extends Model
             }
         });
     }
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class, 'tenant_id');
+    }
 }

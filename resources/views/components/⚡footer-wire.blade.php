@@ -134,6 +134,17 @@ new class extends Component {
                     contract-to-cash process
                     and eliminate
                     manual work. </p>
+                <div class="flex gap-2 items-center">
+                    <button class="btn btn-square btn-primary btn-sm rounded-lg">
+                        <x-fab-facebook-f class="h-5 w-5" />
+                    </button>
+                    <button class="btn btn-square btn-primary btn-sm rounded-lg">
+                        <x-fab-instagram class="h-5 w-5" />
+                    </button>
+                    <button class="btn btn-square btn-primary btn-sm rounded-lg">
+                        <x-fab-x-twitter class="h-5 w-5" />
+                    </button>
+                </div>
             </div>
         </div>
     </div>
