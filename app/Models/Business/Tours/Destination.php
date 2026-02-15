@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destination extends Model
 {
+    protected $connection = 'tenant';
+
     protected $guarded = [];
 
     protected $casts = [

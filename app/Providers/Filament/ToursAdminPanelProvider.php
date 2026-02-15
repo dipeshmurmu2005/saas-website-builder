@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\EnsureToursBusiness;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -19,25 +20,23 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class LandlordPanelProvider extends PanelProvider
+class ToursAdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('landlord')
-            ->domain('gridlayers.test')
-            ->path('landlord')
+            ->id('tours-admin')
+            ->path('tours-admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->discoverResources(in: app_path('Filament/ToursAdmin/Resources'), for: 'App\Filament\ToursAdmin\Resources')
+            ->discoverPages(in: app_path('Filament/ToursAdmin/Pages'), for: 'App\Filament\ToursAdmin\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(in: app_path('Filament/ToursAdmin/Widgets'), for: 'App\Filament\ToursAdmin\Widgets')
             ->widgets([
                 AccountWidget::class,
             ])
@@ -51,6 +50,7 @@ class LandlordPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                EnsureToursBusiness::class,
             ])
             ->authMiddleware([
                 Authenticate::class,

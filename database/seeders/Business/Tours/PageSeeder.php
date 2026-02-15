@@ -3,7 +3,7 @@
 namespace Database\Seeders\Business\Tours;
 
 use Illuminate\Database\Seeder;
-use App\Models\Page;
+use App\Models\Business\Tours\Page;
 
 class PageSeeder extends Seeder
 {

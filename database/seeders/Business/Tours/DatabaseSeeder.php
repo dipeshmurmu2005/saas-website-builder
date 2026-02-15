@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\Business\Tours;
 
-use App\Models\User;
+use App\Models\Business\Tours\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        User::UpdateOrCreate([
+            'id' => 1,
+        ], [
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => 'password'
         ]);
         $this->call(PageSeeder::class);
         $this->call(BannerSeeder::class);

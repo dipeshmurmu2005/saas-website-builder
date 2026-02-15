@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Tenant;
 use App\Enums\TenantStatusEnum;
+use App\Services\DatabaseResolver;
 use App\Services\RouteResolver;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->routes(function () {
-
             $host = request()->getHost();
 
             $tenant = Tenant::query()
@@ -33,10 +33,10 @@ class RouteServiceProvider extends ServiceProvider
                 }
 
                 return;
+            } else {
+                Route::middleware('web')
+                    ->group(base_path('routes/web.php'));
             }
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
         });
     }
 }

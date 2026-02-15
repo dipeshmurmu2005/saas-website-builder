@@ -2,11 +2,11 @@
 
 namespace Database\Seeders\Business\Tours;
 
+use App\Enums\Business\Tours\PackageStatusEnum;
 use Illuminate\Database\Seeder;
-use App\Models\Country;
-use App\Models\Package;
+use App\Models\Business\Tours\Country;
+use App\Models\Business\Tours\Package;
 use Illuminate\Support\Str;
-use App\Enums\PackageStatusEnum;
 
 class PackageSeeder extends Seeder
 {

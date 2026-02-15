@@ -4,7 +4,7 @@ namespace Database\Seeders\Business\Tours;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+
 
 class TestimonialSeeder extends Seeder
 {

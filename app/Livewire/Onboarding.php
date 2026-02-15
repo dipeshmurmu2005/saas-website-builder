@@ -236,8 +236,8 @@ class Onboarding extends Component
 
     public function updatedSubdomain()
     {
-        $subdomain = Tenant::where('domain', $this->subdomain . '.tenancy.test')->first();
-        $this->fullsubdomain = $this->subdomain . '.tenancy.test';
+        $subdomain = Tenant::where('domain', $this->subdomain . '.gridlayers.test')->first();
+        $this->fullsubdomain = $this->subdomain . '.gridlayers.test';
         if ($subdomain) {
             $this->subdomaintaken = true;
         } else {
