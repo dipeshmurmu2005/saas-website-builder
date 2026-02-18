@@ -1,0 +1,6 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/ToursAdmin/**/*';
+@source '../../../../resources/views/filament/tours-admin/**/*';
+
+@source '../../../../vendor/guava/filament-icon-picker/resources/**/*';

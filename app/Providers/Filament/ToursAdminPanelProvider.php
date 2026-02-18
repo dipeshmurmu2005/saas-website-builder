@@ -11,6 +11,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -27,6 +28,7 @@ class ToursAdminPanelProvider extends PanelProvider
         return $panel
             ->id('tours-admin')
             ->path('tours-admin')
+            ->viteTheme('resources/css/filament/tours-admin/theme.css')
             ->login()
             ->colors([
                 'primary' => [
@@ -43,6 +45,7 @@ class ToursAdminPanelProvider extends PanelProvider
                     950 => 'oklch(0.18 0.10 240)',
                 ],
             ])
+            ->maxContentWidth(Width::ScreenTwoExtraLarge)
             ->discoverResources(in: app_path('Filament/ToursAdmin/Resources'), for: 'App\Filament\ToursAdmin\Resources')
             ->discoverPages(in: app_path('Filament/ToursAdmin/Pages'), for: 'App\Filament\ToursAdmin\Pages')
             ->pages([
