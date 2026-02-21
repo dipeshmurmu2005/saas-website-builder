@@ -41,8 +41,6 @@ class SubscriptionResource extends Resource
     {
         return [
             'index' => ListSubscriptions::route('/'),
-            'create' => CreateSubscription::route('/create'),
-            'edit' => EditSubscription::route('/{record}/edit'),
         ];
     }
 }
