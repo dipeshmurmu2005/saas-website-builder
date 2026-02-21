@@ -6,7 +6,30 @@
         <x-heroicon-m-chevron-right class="h-5 w-5" />
         <a href="{{ url()->current() }}" class="text-primary">{{ $this->package->title }}</a>
     </div>
-    <div class="lg:h-120 2xl:h-180 rounded-3xl overflow-hidden mt-10 relative" wire:ignore x-data="{
+    <div class="mt-8 grid grid-cols-4">
+        <div class="col-span-3">
+            <div class="space-y-2">
+                <h2 class="text-3xl font-black">{{ $this->package->title }}</h2>
+                <div class="text-base text-black/80"><span class="font-black">{{ $this->package->duration_days }}</span>
+                    Days -
+                    <span class="font-black">{{ $this->package->duration_days - 1 }}</span>
+                    Nights
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-8 shadow-xs rounded-xl space-y-4">
+            <div class="text-sm text-black/70">
+                <span>From</span> <span class="line-through">Rs. {{ $this->package->original_price }}</span>
+            </div>
+            <div class="text-3xl font-bold">
+                <span>Rs. {{ $this->package->discounted_price }}</span>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+    {{-- <div class="lg:h-120 2xl:h-180 rounded-3xl overflow-hidden mt-10 relative" wire:ignore x-data="{
         init() {
             var swiper = new Swiper('.heroimages', {
                 slidesPerview: 2,
@@ -164,5 +187,5 @@
                 </div>
             @endif
         </div>
-    </div>
+    </div> --}}
 </div>
